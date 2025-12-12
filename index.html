@@ -187,7 +187,99 @@
         .button-group {
             margin-bottom: 20px;
         }
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
 
+    h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .image-upload label {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button-group button {
+        width: 100%;
+        margin: 0;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px 4px;
+    }
+
+    .product-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Jadval scroll qilish uchun */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Kichik ekranda ba'zi ustunlarni yashirish */
+    table th:nth-child(2),
+    table td:nth-child(2) {
+        display: none;
+    }
+
+    /* Ustun kengliklarini o'zgartirish */
+    th:nth-child(1), td:nth-child(1) { width: 10%; }
+    th:nth-child(3), td:nth-child(3) { width: 35%; }
+    th:nth-child(4), td:nth-child(4) { width: 15%; }
+    th:nth-child(5), td:nth-child(5) { width: 15%; }
+    th:nth-child(6), td:nth-child(6) { width: 15%; }
+    th:nth-child(7), td:nth-child(7) { width: 10%; }
+
+    .btn-delete {
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 11px;
+    }
+
+    th, td {
+        padding: 6px 3px;
+    }
+
+    .product-image {
+        width: 35px;
+        height: 35px;
+    }
+
+    input {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
         @media print {
             body {
                 background: white;
