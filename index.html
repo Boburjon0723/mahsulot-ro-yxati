@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulot Ro'yxati</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 120px;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .btn-add {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-add:hover {
+            background: #45a049;
+        }
+
+        .btn-print {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background: #0b7dda;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .btn-delete:hover {
+            background: #da190b;
+        }
+
+        .image-upload {
+            position: relative;
+        }
+
+        .image-upload input[type="file"] {
+            display: none;
+        }
+
+        .image-upload label {
+            display: block;
+            padding: 10px;
+            background: #9C27B0;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .image-upload label:hover {
+            background: #7B1FA2;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .total-row {
+            background: #e8f5e9 !important;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .total-row td {
+            border-top: 3px solid #4CAF50;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .button-group {
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .form-group, .button-group, .btn-delete {
+                display: none !important;
+            }
+
+            table {
+                page-break-inside: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            .product-image {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Mahsulot Ro'yxati</h1>
+
+        <div class="form-group">
+            <input type="text" id="productName" placeholder="Mahsulot nomi">
+            <input type="number" id="productQty" placeholder="Juft">
+            <input type="number" id="productPrice" placeholder="Narxi">
+            <div class="image-upload">
+                <input type="file" id="productImage" accept="image/*">
+                <label for="productImage">📷 Rasm</label>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-add" onclick="addProduct()">➕ Qo'shish</button>
+            <button class="btn-print" onclick="window.print()">🖨️ Print qilish</button>
+        </div>
+
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">№</th>
+                    <th style="width: 10%;">Rasm</th>
+                    <th style="width: 35%;">Mahsulot nomi</th>
+                    <th style="width: 12%;" class="text-center">Juft</th>
+                    <th style="width: 13%;" class="text-right">Narxi</th>
+                    <th style="width: 13%;" class="text-right">Umumiy</th>
+                    <th style="width: 10%;" class="text-center">Amal</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23ddd' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='30'%3E💻%3C/text%3E%3C/svg%3E" class="product-image" onclick="showImage(this.src)"></td>
+                    <td>Notebook HP</td>
+                    <td class="text-center">2</td>
+                    <td class="text-right">5,000,000</td>
+                    <td class="text-right">10,000,000</td>
+                    <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td class="text-center"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23ddd' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='30'%3E🖥️%3C/text%3E%3C/svg%3E" class="product-image" onclick="showImage(this.src)"></td>
+                    <td>Monitor Samsung</td>
+                    <td class="text-center">3</td>
+                    <td class="text-right">2,500,000</td>
+                    <td class="text-right">7,500,000</td>
+                    <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="3" class="text-right">JAMI:</td>
+                    <td class="text-center" id="totalQty">5</td>
+                    <td></td>
+                    <td class="text-right" id="totalPrice">17,500,000</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div id="imageModal" class="image-modal" onclick="closeModal()">
+            <img id="modalImage" src="" alt="Mahsulot rasmi">
+        </div>
+    </div>
+
+    <script>
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function addProduct() {
+            const name = document.getElementById('productName').value.trim();
+            const qty = parseInt(document.getElementById('productQty').value) || 0;
+            const price = parseInt(document.getElementById('productPrice').value) || 0;
+            const imageFile = document.getElementById('productImage').files[0];
+
+            if (!name || qty <= 0 || price <= 0) {
+                alert('Iltimos, barcha maydonlarni to\'ldiring!');
+                return;
+            }
+
+            const tbody = document.getElementById('tableBody');
+            const rowCount = tbody.rows.length + 1;
+            const total = qty * price;
+
+            // Default image if no image uploaded
+            let imageSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23ddd' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='30'%3E📷%3C/text%3E%3C/svg%3E";
+
+            const row = tbody.insertRow();
+            
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    row.innerHTML = `
+                        <td class="text-center">${rowCount}</td>
+                        <td class="text-center"><img src="${e.target.result}" class="product-image" onclick="showImage(this.src)"></td>
+                        <td>${name}</td>
+                        <td class="text-center">${qty}</td>
+                        <td class="text-right">${formatNumber(price)}</td>
+                        <td class="text-right">${formatNumber(total)}</td>
+                        <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
+                    `;
+                    updateTotals();
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                row.innerHTML = `
+                    <td class="text-center">${rowCount}</td>
+                    <td class="text-center"><img src="${imageSrc}" class="product-image" onclick="showImage(this.src)"></td>
+                    <td>${name}</td>
+                    <td class="text-center">${qty}</td>
+                    <td class="text-right">${formatNumber(price)}</td>
+                    <td class="text-right">${formatNumber(total)}</td>
+                    <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
+                `;
+                updateTotals();
+            }
+
+            document.getElementById('productName').value = '';
+            document.getElementById('productQty').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productImage').value = '';
+        }
+
+        function deleteRow(btn) {
+            const row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            updateRowNumbers();
+            updateTotals();
+        }
+
+        function updateRowNumbers() {
+            const tbody = document.getElementById('tableBody');
+            for (let i = 0; i < tbody.rows.length; i++) {
+                tbody.rows[i].cells[0].textContent = i + 1;
+            }
+        }
+
+        function updateTotals() {
+            const tbody = document.getElementById('tableBody');
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            for (let i = 0; i < tbody.rows.length; i++) {
+                const qty = parseInt(tbody.rows[i].cells[3].textContent) || 0;
+                const total = parseInt(tbody.rows[i].cells[5].textContent.replace(/,/g, '')) || 0;
+                totalQty += qty;
+                totalPrice += total;
+            }
+
+            document.getElementById('totalQty').textContent = totalQty;
+            document.getElementById('totalPrice').textContent = formatNumber(totalPrice);
+        }
+
+        function showImage(src) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        document.getElementById('productName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('productQty').focus();
+            }
+        });
+
+        document.getElementById('productQty').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('productPrice').focus();
+            }
+        });
+
+        document.getElementById('productPrice').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addProduct();
+                document.getElementById('productName').focus();
+            }
+        });
+    </script>
+</body>
+</html>
