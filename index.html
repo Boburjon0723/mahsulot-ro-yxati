@@ -17,6 +17,40 @@
             background: #f5f5f5;
         }
 
+        .language-switcher {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            z-index: 1000;
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            border-color: #4CAF50;
+        }
+
+        .lang-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -297,7 +331,7 @@
 
         .table-image {
             width: 100%;
-            height: auto;
+            height: 80px;
             object-fit: cover;
             border-radius: 4px;
             display: block;
@@ -324,6 +358,10 @@
                 max-width: 100%;
             }
 
+            .language-switcher {
+                display: none !important;
+            }
+
             .form-section, .button-group, .btn-delete {
                 display: none !important;
             }
@@ -331,6 +369,18 @@
             h1 {
                 font-size: 18px;
                 margin-bottom: 10px;
+            }
+
+            .client-info {
+                display: block !important;
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 12px;
+                border: 2px solid #4CAF50;
+                border-radius: 6px;
+                background: #f0f9f0;
             }
 
             table {
@@ -390,6 +440,19 @@
                 margin-bottom: 10px;
             }
 
+        .client-info {
+            display: none;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            background: #f0f9f0;
+            color: #333;
+        }
+
             table {
                 font-size: 10px;
             }
@@ -406,10 +469,18 @@
     </style>
 </head>
 <body>
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="changeLanguage('uz')">O'ZB</button>
+        <button class="lang-btn" onclick="changeLanguage('ru')">РУС</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">ENG</button>
+    </div>
+
     <div class="container">
-        <h1>📋 MAHSULOT RO'YXATI</h1>
+        <h1 data-lang="title">📋 МАҲСУЛОТ РЎЙХАТИ</h1>
 
         <div class="form-section">
+            
+
             <div class="image-upload">
                 <label style="margin: 0;">📷 Rasm:</label>
                 <input type="file" id="imageUpload" accept="image/*">
@@ -420,12 +491,12 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>Model nomi:</label>
-                    <input type="text" id="modelName" placeholder="Masalan: Bubon">
+                    <label>Модель номи:</label>
+                    <input type="text" id="modelName" placeholder="Масалан: Bubon">
                 </div>
                 <div class="form-group">
-                    <label>Narxi ( $ ):</label>
-                    <input type="number" id="modelPrice" placeholder="Masalan: 12$">
+                    <label>Нархи ( $ ):</label>
+                    <input type="number" id="modelPrice" placeholder="Масалан: 12$" min="0">
                 </div>
             </div>
 
@@ -435,84 +506,105 @@
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFD700')">
                         <input type="checkbox" value="tilla">
                         <div class="color-box" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);"></div>
-                        <span>Tilla</span>
+                        <span>Тилла (40686)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFF8DC')">
                         <input type="checkbox" value="qaymoq">
                         <div class="color-box" style="background: #FFF8DC; border: 1px solid #ddd;"></div>
-                        <span>Qaymoq</span>
+                        <span>Ayviriy (41458)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#808080')">
                         <input type="checkbox" value="seriy">
                         <div class="color-box" style="background: #808080;"></div>
-                        <span>Seriy</span>
+                        <span>Қаймоқ (40823)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#F5E6D3')">
                         <input type="checkbox" value="shampan">
                         <div class="color-box" style="background: #F5E6D3; border: 1px solid #ddd;"></div>
-                        <span>Shampan</span>
+                        <span>Шампан</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFFFFF')">
                         <input type="checkbox" value="oq">
                         <div class="color-box" style="background: #FFFFFF; border: 1px solid #ddd;"></div>
-                        <span>Oq</span>
+                        <span>Оқ (40447)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#A9A9A9')">
                         <input type="checkbox" value="mokriy">
                         <div class="color-box" style="background: #A9A9A9;"></div>
-                        <span>Mokriy</span>
+                        <span>Мокрий (41482)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#000000')">
                         <input type="checkbox" value="qora">
                         <div class="color-box" style="background: #000000;"></div>
-                        <span>Qora</span>
+                        <span>Қора</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#8B7355')">
                         <input type="checkbox" value="antik">
                         <div class="color-box" style="background: linear-gradient(135deg, #8B7355 0%, #6B5A44 100%);"></div>
-                        <span>Antik</span>
+                        <span>Антик</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#B87333')">
                         <input type="checkbox" value="mis">
                         <div class="color-box" style="background: linear-gradient(135deg, #B87333 0%, #8B5A2B 100%);"></div>
-                        <span>Mis</span>
+                        <span>Мис</span>
+                    </div>
+                     <div class="color-checkbox" onclick="toggleColor(this, '#FFE066')">
+                        <input type="checkbox" value="och-tilla">
+                        <div class="color-box" style="background: linear-gradient(135deg, #FFE066 0%, #FFDB4D 100%);"></div>
+                        <span>Оч тилла (41067)</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#D2691E')">
+                        <input type="checkbox" value="kofe">
+                        <div class="color-box" style="background: #D2691E;"></div>
+                        <span>Кофе (40744)</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#C19A6B')">
+                        <input type="checkbox" value="och-kofe">
+                        <div class="color-box" style="background: #C19A6B;"></div>
+                        <span>Оч кофе (40752)</span>
                     </div>
                 </div>
             </div>
 
             <div class="quantities-section" id="quantitiesSection">
-                <label>Har bir rang uchun soni:</label>
+                <label data-lang="quantities-label">Har bir rang uchun soni:</label>
                 <div id="quantityInputs"></div>
             </div>
 
-            <button class="btn-add" onclick="addProduct()">➕ Ro'yxatga qo'shish</button>
+            <button class="btn-add" onclick="addProduct()" data-lang="add-btn">➕ Ro'yxatga qo'shish</button>
         </div>
 
         <div class="button-group">
-            <button class="btn-export" onclick="shareList()" style="background: #25D366;">📤 Ulashish (Telegram/WhatsApp)</button>
-            <button class="btn-export" onclick="exportToImage()">🖼️ Rasm saqlash</button>
-            <button class="btn-export" onclick="exportToPDF()">📄 PDF</button>
-            <button class="btn-print" onclick="window.print()">🖨️ Print</button>
+            <button class="btn-export" onclick="shareList()" style="background: #25D366;" data-lang="share-btn">📤 Ulashish (Telegram/WhatsApp)</button>
+            <button class="btn-export" onclick="exportToImage()" data-lang="image-btn">🖼️ Rasm saqlash</button>
+            <button class="btn-export" onclick="exportToPDF()" data-lang="pdf-btn">📄 PDF</button>
+            <button class="btn-print" onclick="window.print()" data-lang="print-btn">🖨️ Print</button>
         </div>
 
         <table id="productTable">
             <thead>
+                
+                    <div class="form-group" style="margin-bottom: 15px;">
+                <label>👤 Мижоз / Компания номи:</label>
+                <input type="text" id="clientName" placeholder="Масалан: Ўзбек Дизайн" style="padding: 12px; font-size: 16px; font-weight: bold;">
+            </div>
+                
                 <tr>
                     <th style="width: 5%;">№</th>
-                    <th style="width: 15%;">Rasm</th>
-                    <th style="width: 25%;">Model</th>
-                    <th style="width: 12%;">Rang</th>
-                    <th style="width: 10%;">Soni</th>
-                    <th style="width: 13%;">Narxi $</th>
-                    <th style="width: 15%;">Jami summa</th>
-                    <th style="width: 5%;">Amal</th>
+                    <th style="width: 25%;" data-lang="th-model">Model</th>
+                    <th style="width: 15%;" data-lang="th-image">Rasm</th>
+                    <th style="width: 12%;" data-lang="th-color">Rang</th>
+                    <th style="width: 10%;" data-lang="th-qty">Soni (Juft)</th>
+                    <th style="width: 13%;" data-lang="th-price">Narxi</th>
+                    <th style="width: 15%;" data-lang="th-total">Jami summa ( $ )</th>
+                    <th style="width: 5%;" data-lang="th-action">Amal</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
             </tbody>
             <tfoot>
                 <tr class="total-row">
-                    <td colspan="4" class="text-right"><strong>JAMI:</strong></td>
+                    <td colspan="4" class="text-right"><strong data-lang="total-label">JAMI:</strong></td>
                     <td class="text-center" id="totalQty"><strong>0</strong></td>
                     <td></td>
                     <td class="text-right" id="totalPrice"><strong>0</strong></td>
@@ -525,8 +617,157 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
+        const translations = {
+            uz: {
+                'title': '📋 MAHSULOT RO\'YXATI',
+                'client-label': '👤 Mijoz / Kompaniya nomi:',
+                'client-placeholder': 'Masalan: Ozbek Dizayn',
+                'image-label': '📷 Rasm:',
+                'image-text': 'Rasm',
+                'model-label': 'Model nomi:',
+                'model-placeholder': 'Masalan: Karniз Elite',
+                'price-label': 'Narxi (so\'m):',
+                'price-placeholder': 'Masalan: 500000',
+                'colors-label': 'Ranglar:',
+                'color-tilla': 'Tilla',
+                'color-och-tilla': 'Och tilla',
+                'color-qaymoq': 'Qaymoq',
+                'color-och-kofe': 'Och kofe',
+                'color-kofe': 'Kofe',
+                'color-seriy': 'Seriy',
+                'color-shampan': 'Shampan',
+                'color-oq': 'Oq',
+                'color-mokriy': 'Mokriy',
+                'color-qora': 'Qora',
+                'color-antik': 'Antik',
+                'color-mis': 'Mis',
+                'quantities-label': 'Har bir rang uchun soni:',
+                'add-btn': '➕ Ro\'yxatga qo\'shish',
+                'share-btn': '📤 Ulashish (Telegram/WhatsApp)',
+                'image-btn': '🖼️ Rasm saqlash',
+                'pdf-btn': '📄 PDF',
+                'print-btn': '🖨️ Print',
+                'th-model': 'Model',
+                'th-image': 'Rasm',
+                'th-color': 'Rang',
+                'th-qty': 'Soni',
+                'th-price': 'Narxi',
+                'th-total': 'Jami summa',
+                'th-action': 'Amal',
+                'total-label': 'JAMI:',
+                'alert-model': 'Model nomini kiriting!',
+                'alert-colors': 'Kamida bitta rang tanlang!'
+            },
+            ru: {
+                'title': '📋 СПИСОК ТОВАРОВ',
+                'client-label': '👤 Имя клиента / Компании:',
+                'client-placeholder': 'Например: Узбек Дизайн',
+                'image-label': '📷 Фото:',
+                'image-text': 'Фото',
+                'model-label': 'Название модели:',
+                'model-placeholder': 'Например: Карниз Элит',
+                'price-label': 'Цена (сум):',
+                'price-placeholder': 'Например: 500000',
+                'colors-label': 'Цвета:',
+                'color-tilla': 'Золото',
+                'color-och-tilla': 'Светлое золото',
+                'color-qaymoq': 'Крем',
+                'color-och-kofe': 'Светлый кофе',
+                'color-kofe': 'Кофе',
+                'color-seriy': 'Серый',
+                'color-shampan': 'Шампань',
+                'color-oq': 'Белый',
+                'color-mokriy': 'Мокрый асфальт',
+                'color-qora': 'Черный',
+                'color-antik': 'Антик',
+                'color-mis': 'Медь',
+                'quantities-label': 'Количество для каждого цвета:',
+                'add-btn': '➕ Добавить в список',
+                'share-btn': '📤 Поделиться (Telegram/WhatsApp)',
+                'image-btn': '🖼️ Сохранить как фото',
+                'pdf-btn': '📄 PDF',
+                'print-btn': '🖨️ Печать',
+                'th-model': 'Модель',
+                'th-image': 'Фото',
+                'th-color': 'Цвет',
+                'th-qty': 'Кол-во (пара)',
+                'th-price': 'Цена',
+                'th-total': 'Итого',
+                'th-action': 'Действие',
+                'total-label': 'ИТОГО:',
+                'alert-model': 'Введите название модели!',
+                'alert-colors': 'Выберите хотя бы один цвет!'
+            },
+            en: {
+                'title': '📋 PRODUCT LIST',
+                'client-label': '👤 Client / Company Name:',
+                'client-placeholder': 'Example: Uzbek Design',
+                'image-label': '📷 Image:',
+                'image-text': 'Image',
+                'model-label': 'Model Name:',
+                'model-placeholder': 'Example: Curtain Rod Elite',
+                'price-label': 'Price (UZS):',
+                'price-placeholder': 'Example: 500000',
+                'colors-label': 'Colors:',
+                'color-tilla': 'Gold',
+                'color-och-tilla': 'Light Gold',
+                'color-qaymoq': 'Cream',
+                'color-och-kofe': 'Light Coffee',
+                'color-kofe': 'Coffee',
+                'color-seriy': 'Gray',
+                'color-shampan': 'Champagne',
+                'color-oq': 'White',
+                'color-mokriy': 'Wet Asphalt',
+                'color-qora': 'Black',
+                'color-antik': 'Antique',
+                'color-mis': 'Copper',
+                'quantities-label': 'Quantity for each color:',
+                'add-btn': '➕ Add to List',
+                'share-btn': '📤 Share (Telegram/WhatsApp)',
+                'image-btn': '🖼️ Save as Image',
+                'pdf-btn': '📄 PDF',
+                'print-btn': '🖨️ Print',
+                'th-model': 'Model',
+                'th-image': 'Image',
+                'th-color': 'Color',
+                'th-qty': 'Quantity (pair)',
+                'th-price': 'Price',
+                'th-total': 'Total',
+                'th-action': 'Action',
+                'total-label': 'TOTAL:',
+                'alert-model': 'Enter model name!',
+                'alert-colors': 'Select at least one color!'
+            }
+        };
+
+        let currentLang = 'uz';
         let selectedColors = [];
         let uploadedImage = '';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-lang-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-lang-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            updateQuantityInputs();
+        }
 
         document.getElementById('imageUpload').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -537,6 +778,16 @@
                     document.getElementById('imagePreview').innerHTML = `<img src="${uploadedImage}" alt="Preview">`;
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('clientName').addEventListener('input', function(e) {
+            const clientName = e.target.value.trim();
+            const clientInfo = document.getElementById('clientInfo');
+            if (clientName) {
+                clientInfo.textContent = `👤 ${clientName}`;
+            } else {
+                clientInfo.textContent = '';
             }
         });
 
@@ -584,17 +835,12 @@
             const price = parseInt(document.getElementById('modelPrice').value) || 0;
 
             if (!modelName) {
-                alert('Model nomini kiriting!');
-                return;
-            }
-
-            if (price <= 0) {
-                alert('Narxni kiriting!');
+                alert(translations[currentLang]['alert-model']);
                 return;
             }
 
             if (selectedColors.length === 0) {
-                alert('Kamida bitta rang tanlang!');
+                alert(translations[currentLang]['alert-colors']);
                 return;
             }
 
@@ -622,12 +868,12 @@
             const row = tbody.insertRow();
             row.innerHTML = `
                 <td class="text-center">${rowCount}</td>
-                <td style="padding: 0;"><img src="${imageURL}" alt="${modelName}" class="table-image"></td>
                 <td>${modelName}</td>
+                <td style="padding: 0;"><img src="${imageURL}" alt="${modelName}" class="table-image"></td>
                 <td><div class="colors-cell">${colorsHTML}</div></td>
                 <td><div class="quantities-cell">${quantitiesHTML}</div></td>
-                <td class="text-right">${formatNumber(price)}</td>
-                <td class="text-right">${formatNumber(totalSum)}</td>
+                <td class="text-right">${price > 0 ? formatNumber(price) : '0'}</td>
+                <td class="text-right">${totalSum > 0 ? formatNumber(totalSum) : '0'}</td>
                 <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
             `;
 
@@ -686,6 +932,9 @@
         }
 
         function exportToPDF() {
+            const clientName = document.getElementById('clientName').value.trim();
+            const fileName = clientName ? `${clientName}-royxat.pdf` : 'mahsulot-royxati.pdf';
+            
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF('p', 'mm', 'a4');
             
@@ -718,7 +967,7 @@
                     heightLeft -= pageHeight;
                 }
 
-                doc.save('mahsulot-royxati.pdf');
+                doc.save(fileName);
                 
                 buttons.style.display = 'flex';
                 form.style.display = 'block';
@@ -726,6 +975,9 @@
         }
 
         function exportToImage() {
+            const clientName = document.getElementById('clientName').value.trim();
+            const fileName = clientName ? `${clientName}-royxat.png` : 'mahsulot-royxati.png';
+            
             const element = document.querySelector('.container');
             const buttons = document.querySelector('.button-group');
             const form = document.querySelector('.form-section');
@@ -743,7 +995,7 @@
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'mahsulot-royxati.png';
+                    a.download = fileName;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
