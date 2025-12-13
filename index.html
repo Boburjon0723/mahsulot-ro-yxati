@@ -288,10 +288,15 @@
         }
 
         .table-image {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            height: auto;
             object-fit: cover;
             border-radius: 4px;
+            display: block;
+        }
+        
+        td:has(.table-image) {
+            padding: 0;
         }
 
         @media print {
@@ -373,6 +378,7 @@
             .button-group button {
                 width: 100%;
                 margin-right: 0;
+                margin-bottom: 10px;
             }
 
             table {
@@ -406,11 +412,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Model nomi:</label>
-                    <input type="text" id="modelName" placeholder="Masalan: iPhone 15 Pro">
+                    <input type="text" id="modelName" placeholder="Masalan: Bubon">
                 </div>
                 <div class="form-group">
-                    <label>Narxi (so'm):</label>
-                    <input type="number" id="modelPrice" placeholder="Masalan: 12000000">
+                    <label>Narxi ( $ ):</label>
+                    <input type="number" id="modelPrice" placeholder="Masalan: 10$">
                 </div>
             </div>
 
@@ -420,7 +426,7 @@
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFD700')">
                         <input type="checkbox" value="sariq">
                         <div class="color-box" style="background: #FFD700;"></div>
-                        <span>Sariq</span>
+                        <span>Tilla</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFFFFF')">
                         <input type="checkbox" value="oq">
@@ -459,8 +465,10 @@
         </div>
 
         <div class="button-group">
-            <button class="btn-export" onclick="exportToPDF()">📄 PDF yuklab olish</button>
-            <button class="btn-print" onclick="window.print()">🖨️ Print qilish</button>
+            <button class="btn-export" onclick="shareList()" style="background: #25D366;">📤 Ulashish (Telegram // Whatsaap)</button>
+            <button class="btn-export" onclick="exportToImage()">🖼️ Rasm saqlash</button>
+            <button class="btn-export" onclick="exportToPDF()">📄 PDF</button>
+            <button class="btn-print" onclick="window.print()">🖨️ Print</button>
         </div>
 
         <table id="productTable">
@@ -471,7 +479,7 @@
                     <th style="width: 25%;">Model</th>
                     <th style="width: 12%;">Rang</th>
                     <th style="width: 10%;">Soni</th>
-                    <th style="width: 13%;">Narxi</th>
+                    <th style="width: 13%;">Narxi $</th>
                     <th style="width: 15%;">Jami summa</th>
                     <th style="width: 5%;">Amal</th>
                 </tr>
@@ -483,7 +491,7 @@
                     <td colspan="4" class="text-right"><strong>JAMI:</strong></td>
                     <td class="text-center" id="totalQty"><strong>0</strong></td>
                     <td></td>
-                    <td class="text-right" id="totalPrice"><strong>0</strong></td>
+                    <td class="text-right" id="totalPrice"><strong>0</strong>$</td>
                     <td></td>
                 </tr>
             </tfoot>
@@ -590,7 +598,7 @@
             const row = tbody.insertRow();
             row.innerHTML = `
                 <td class="text-center">${rowCount}</td>
-                <td class="text-center"><img src="${imageURL}" alt="${modelName}" class="table-image"></td>
+                <td style="padding: 0;"><img src="${imageURL}" alt="${modelName}" class="table-image"></td>
                 <td>${modelName}</td>
                 <td><div class="colors-cell">${colorsHTML}</div></td>
                 <td><div class="quantities-cell">${quantitiesHTML}</div></td>
@@ -690,6 +698,72 @@
                 
                 buttons.style.display = 'flex';
                 form.style.display = 'block';
+            });
+        }
+
+        function exportToImage() {
+            const element = document.querySelector('.container');
+            const buttons = document.querySelector('.button-group');
+            const form = document.querySelector('.form-section');
+            
+            buttons.style.display = 'none';
+            form.style.display = 'none';
+
+            html2canvas(element, {
+                scale: 3,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff'
+            }).then(canvas => {
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'mahsulot-royxati.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    buttons.style.display = 'flex';
+                    form.style.display = 'block';
+                }, 'image/png');
+            });
+        }
+
+        function shareList() {
+            const element = document.querySelector('.container');
+            const buttons = document.querySelector('.button-group');
+            const form = document.querySelector('.form-section');
+            
+            buttons.style.display = 'none';
+            form.style.display = 'none';
+
+            html2canvas(element, {
+                scale: 3,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff'
+            }).then(canvas => {
+                canvas.toBlob(function(blob) {
+                    if (navigator.share) {
+                        const file = new File([blob], 'mahsulot-royxati.png', { type: 'image/png' });
+                        navigator.share({
+                            title: 'Mahsulot Ro\'yxati',
+                            text: 'Mahsulot ro\'yxatim',
+                            files: [file]
+                        }).then(() => {
+                            console.log('Muvaffaqiyatli ulashildi');
+                        }).catch(err => {
+                            console.log('Ulashish bekor qilindi', err);
+                        });
+                    } else {
+                        alert('Sizning brauzeringiz ulashishni qo\'llab-quvvatlamaydi');
+                    }
+                    
+                    buttons.style.display = 'flex';
+                    form.style.display = 'block';
+                }, 'image/png');
             });
         }
     </script>
