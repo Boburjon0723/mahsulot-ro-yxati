@@ -331,7 +331,7 @@
 
         .table-image {
             width: 100%;
-            height: 80px;
+            height: auto;
             object-fit: cover;
             border-radius: 4px;
             display: block;
@@ -575,8 +575,8 @@
         </div>
 
         <div class="button-group">
-            <button class="btn-export" onclick="shareList()" style="background: #25D366;" data-lang="share-btn">📤 Ulashish (Telegram/WhatsApp)</button>
-            <button class="btn-export" onclick="exportToImage()" data-lang="image-btn">🖼️ Rasm saqlash</button>
+            <button class="btn-export" onclick="shareList()" style="background: #25D366;" data-lang="share-btn">📤 Улашиш (Telegram/WhatsApp)</button>
+            <button class="btn-export" onclick="exportToImage()" data-lang="image-btn">🖼️ Расм сақлаш</button>
             <button class="btn-export" onclick="exportToPDF()" data-lang="pdf-btn">📄 PDF</button>
             <button class="btn-print" onclick="window.print()" data-lang="print-btn">🖨️ Print</button>
         </div>
@@ -585,19 +585,19 @@
             <thead>
                 
                     <div class="form-group" style="margin-bottom: 15px;">
-                <label>👤 Мижоз / Компания номи:</label>
-                <input type="text" id="clientName" placeholder="Масалан: Ўзбек Дизайн" style="padding: 12px; font-size: 16px; font-weight: bold;">
+                <label data-lang="client-placeholder">👤 Мижоз / Компания номи:</label>
+                <input type="text" id="clientName"  placeholder="Масалан: Ўзбек Дизайн" style="padding: 12px; font-size: 16px; font-weight: bold;">
             </div>
                 
                 <tr>
                     <th style="width: 5%;">№</th>
-                    <th style="width: 25%;" data-lang="th-model">Model</th>
-                    <th style="width: 15%;" data-lang="th-image">Rasm</th>
-                    <th style="width: 12%;" data-lang="th-color">Rang</th>
-                    <th style="width: 10%;" data-lang="th-qty">Soni (Juft)</th>
-                    <th style="width: 13%;" data-lang="th-price">Narxi</th>
-                    <th style="width: 15%;" data-lang="th-total">Jami summa ( $ )</th>
-                    <th style="width: 5%;" data-lang="th-action">Amal</th>
+                    <th style="width: 25%;" data-lang="th-model">Модель</th>
+                    <th style="width: 15%;" data-lang="th-image">Расм</th>
+                    <th style="width: 12%;" data-lang="th-color">Ранг</th>
+                    <th style="width: 10%;" data-lang="th-qty">Сони (Жуфт)</th>
+                    <th style="width: 13%;" data-lang="th-price">Нархи</th>
+                    <th style="width: 15%;" data-lang="th-total">Жами сумма ( $ )</th>
+                    <th style="width: 5%;" data-lang="th-action">амал</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
