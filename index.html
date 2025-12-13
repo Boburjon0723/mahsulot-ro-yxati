@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@
             background: white;
             padding: 8px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .lang-btn {
@@ -57,7 +58,7 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
@@ -93,7 +94,8 @@
             margin-bottom: 5px;
         }
 
-        input[type="text"], input[type="number"] {
+        input[type="text"],
+        input[type="number"] {
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -260,7 +262,8 @@
             font-size: 12px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #333;
             padding: 8px;
             text-align: left;
@@ -336,7 +339,7 @@
             border-radius: 4px;
             display: block;
         }
-        
+
         td:has(.table-image) {
             padding: 0;
         }
@@ -362,7 +365,9 @@
                 display: none !important;
             }
 
-            .form-section, .button-group, .btn-delete {
+            .form-section,
+            .button-group,
+            .btn-delete {
                 display: none !important;
             }
 
@@ -440,24 +445,25 @@
                 margin-bottom: 10px;
             }
 
-        .client-info {
-            display: none;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 2px solid #4CAF50;
-            border-radius: 6px;
-            background: #f0f9f0;
-            color: #333;
-        }
+            .client-info {
+                display: none;
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 10px;
+                border: 2px solid #4CAF50;
+                border-radius: 6px;
+                background: #f0f9f0;
+                color: #333;
+            }
 
             table {
                 font-size: 10px;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 4px;
             }
 
@@ -468,6 +474,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="language-switcher">
         <button class="lang-btn active" onclick="changeLanguage('uz')">O'ZB</button>
@@ -479,7 +486,7 @@
         <h1 data-lang="title">📋 МАҲСУЛОТ РЎЙХАТИ</h1>
 
         <div class="form-section">
-            
+
 
             <div class="image-upload">
                 <label style="margin: 0;">📷 Rasm:</label>
@@ -505,7 +512,8 @@
                 <div class="color-options">
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFD700')">
                         <input type="checkbox" value="tilla">
-                        <div class="color-box" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);"></div>
+                        <div class="color-box" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">
+                        </div>
                         <span>Тилла (40686)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFF8DC')">
@@ -540,17 +548,20 @@
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#8B7355')">
                         <input type="checkbox" value="antik">
-                        <div class="color-box" style="background: linear-gradient(135deg, #8B7355 0%, #6B5A44 100%);"></div>
+                        <div class="color-box" style="background: linear-gradient(135deg, #8B7355 0%, #6B5A44 100%);">
+                        </div>
                         <span>Антик</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#B87333')">
                         <input type="checkbox" value="mis">
-                        <div class="color-box" style="background: linear-gradient(135deg, #B87333 0%, #8B5A2B 100%);"></div>
+                        <div class="color-box" style="background: linear-gradient(135deg, #B87333 0%, #8B5A2B 100%);">
+                        </div>
                         <span>Мис</span>
                     </div>
-                     <div class="color-checkbox" onclick="toggleColor(this, '#FFE066')">
+                    <div class="color-checkbox" onclick="toggleColor(this, '#FFE066')">
                         <input type="checkbox" value="och-tilla">
-                        <div class="color-box" style="background: linear-gradient(135deg, #FFE066 0%, #FFDB4D 100%);"></div>
+                        <div class="color-box" style="background: linear-gradient(135deg, #FFE066 0%, #FFDB4D 100%);">
+                        </div>
                         <span>Оч тилла (41067)</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#D2691E')">
@@ -571,11 +582,12 @@
                 <div id="quantityInputs"></div>
             </div>
 
-            <button class="btn-add" onclick="addProduct()" data-lang="add-btn">➕ Ro'yxatga qo'shish</button>
+            <button class="btn-add" onclick="addProduct()" data-lang="add-btn">➕ Рўйхатга қўшиш</button>
         </div>
 
         <div class="button-group">
-            <button class="btn-export" onclick="shareList()" style="background: #25D366;" data-lang="share-btn">📤 Улашиш (Telegram/WhatsApp)</button>
+            <button class="btn-export" onclick="shareList()" style="background: #25D366;" data-lang="share-btn">📤
+                Улашиш (Telegram/WhatsApp)</button>
             <button class="btn-export" onclick="exportToImage()" data-lang="image-btn">🖼️ Расм сақлаш</button>
             <button class="btn-export" onclick="exportToPDF()" data-lang="pdf-btn">📄 PDF</button>
             <button class="btn-print" onclick="window.print()" data-lang="print-btn">🖨️ Print</button>
@@ -583,12 +595,13 @@
 
         <table id="productTable">
             <thead>
-                
-                    <div class="form-group" style="margin-bottom: 15px;">
-                <label>👤 Мижоз / Компания номи:</label>
-                <input type="text" id="clientName" data-lang="client-placeholder"  placeholder="Например: Ўзбек Дизайн" style="padding: 12px; font-size: 16px; font-weight: bold;">
-            </div>
-                
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>👤 Мижоз / Компания номи:</label>
+                    <input type="text" id="clientName" data-lang="client-placeholder"
+                        placeholder="Например: Ўзбек Дизайн" style="padding: 12px; font-size: 16px; font-weight: bold;">
+                </div>
+
                 <tr>
                     <th style="width: 5%;">№</th>
                     <th style="width: 25%;" data-lang="th-model">Модель</th>
@@ -619,44 +632,45 @@
     <script>
         const translations = {
             uz: {
-                'title': '📋 MAHSULOT RO\'YXATI',
-                'client-label': '👤 Mijoz / Kompaniya nomi:',
-                'client-placeholder': 'Masalan: Ozbek Dizayn',
-                'image-label': '📷 Rasm:',
-                'image-text': 'Rasm',
-                'model-label': 'Model nomi:',
+                'title': '📋 МАҲСУЛОТ РЎЙХАТИ',
+                'client-label': '👤 Мижоз / Компания номи:',
+                'client-placeholder': 'Масалан: Ўзбек Дизайн',
+                'image-label': '📷 Расм:',
+                'image-text': 'Расм',
+                'model-label': 'Модель номи:',
                 'model-placeholder': 'Masalan: Karniз Elite',
-                'price-label': 'Narxi (so\'m):',
-                'price-placeholder': 'Masalan: 500000',
-                'colors-label': 'Ranglar:',
-                'color-tilla': 'Tilla',
+                'price-label': 'Narxi ($):',
+                'price-placeholder': 'Masalan: 5$',
+                'colors-label': 'Ранг:',
+                'color-tilla': 'Тилла',
                 'color-och-tilla': 'Och tilla',
-                'color-qaymoq': 'Qaymoq',
+                'color-qaymoq': 'Қаймоқ',
                 'color-och-kofe': 'Och kofe',
                 'color-kofe': 'Kofe',
-                'color-seriy': 'Seriy',
-                'color-shampan': 'Shampan',
-                'color-oq': 'Oq',
-                'color-mokriy': 'Mokriy',
-                'color-qora': 'Qora',
-                'color-antik': 'Antik',
-                'color-mis': 'Mis',
-                'quantities-label': 'Har bir rang uchun soni:',
-                'add-btn': '➕ Ro\'yxatga qo\'shish',
-                'share-btn': '📤 Ulashish (Telegram/WhatsApp)',
-                'image-btn': '🖼️ Rasm saqlash',
+                'color-seriy': 'Серий',
+                'color-shampan': 'Шампан',
+                'color-oq': 'Оқ',
+                'color-mokriy': 'Мокрий',
+                'color-qora': 'Қора',
+                'color-antik': 'Антик',
+                'color-mis': 'Мис',
+                'quantities-label': 'Ҳар бир ранг учун сони:',
+                'add-btn': '➕ Рўйхатга қўшиш',
+                'share-btn': '📤 Улашиш (Telegram/WhatsApp)',
+                'image-btn': '🖼️ Расм сақлаш',
                 'pdf-btn': '📄 PDF',
-                'print-btn': '🖨️ Print',
-                'th-model': 'Model',
-                'th-image': 'Rasm',
-                'th-color': 'Rang',
-                'th-qty': 'Soni',
-                'th-price': 'Narxi',
-                'th-total': 'Jami summa',
-                'th-action': 'Amal',
-                'total-label': 'JAMI:',
-                'alert-model': 'Model nomini kiriting!',
-                'alert-colors': 'Kamida bitta rang tanlang!'
+                'print-btn': '🖨️ Принт',
+                'th-model': 'Модель',
+                'th-image': 'Расм',
+                'th-color': 'Ранг',
+                'th-qty': 'Сони',
+                'th-price': 'Нархи',
+                'th-total': 'Жами сумма',
+                'th-action': 'Амал',
+                'total-label': 'ЖАМИ:',
+                'alert-model': 'Модель номини киритинг!',
+                'alert-colors': 'Камида битта ранг танланг!'
+
             },
             ru: {
                 'title': '📋 СПИСОК ТОВАРОВ',
@@ -746,7 +760,7 @@
 
         function changeLanguage(lang) {
             currentLang = lang;
-            
+
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -769,11 +783,11 @@
             updateQuantityInputs();
         }
 
-        document.getElementById('imageUpload').addEventListener('change', function(e) {
+        document.getElementById('imageUpload').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = function (event) {
                     uploadedImage = event.target.result;
                     document.getElementById('imagePreview').innerHTML = `<img src="${uploadedImage}" alt="Preview">`;
                 };
@@ -781,7 +795,7 @@
             }
         });
 
-        document.getElementById('clientName').addEventListener('input', function(e) {
+        document.getElementById('clientName').addEventListener('input', function (e) {
             const clientName = e.target.value.trim();
             const clientInfo = document.getElementById('clientInfo');
             if (clientName) {
@@ -794,7 +808,7 @@
         function toggleColor(element, colorCode) {
             const checkbox = element.querySelector('input[type="checkbox"]');
             const colorName = checkbox.value;
-            
+
             if (checkbox.checked) {
                 checkbox.checked = false;
                 element.classList.remove('selected');
@@ -811,7 +825,7 @@
         function updateQuantityInputs() {
             const section = document.getElementById('quantitiesSection');
             const container = document.getElementById('quantityInputs');
-            
+
             if (selectedColors.length > 0) {
                 section.classList.add('active');
                 container.innerHTML = selectedColors.map(color => `
@@ -851,15 +865,15 @@
 
             const tbody = document.getElementById('tableBody');
             const rowCount = tbody.rows.length + 1;
-            
+
             const totalQty = quantities.reduce((sum, item) => sum + item.qty, 0);
             const totalSum = totalQty * price;
 
-            const colorsHTML = quantities.map(item => 
+            const colorsHTML = quantities.map(item =>
                 `<div class="color-item" style="background: ${item.color.code};">${item.color.name}</div>`
             ).join('');
 
-            const quantitiesHTML = quantities.map(item => 
+            const quantitiesHTML = quantities.map(item =>
                 `<div class="quantity-item">${item.qty}</div>`
             ).join('');
 
@@ -934,14 +948,14 @@
         function exportToPDF() {
             const clientName = document.getElementById('clientName').value.trim();
             const fileName = clientName ? `${clientName}-royxat.pdf` : 'mahsulot-royxati.pdf';
-            
+
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF('p', 'mm', 'a4');
-            
+
             const element = document.querySelector('.container');
             const buttons = document.querySelector('.button-group');
             const form = document.querySelector('.form-section');
-            
+
             buttons.style.display = 'none';
             form.style.display = 'none';
 
@@ -968,7 +982,7 @@
                 }
 
                 doc.save(fileName);
-                
+
                 buttons.style.display = 'flex';
                 form.style.display = 'block';
             });
@@ -977,11 +991,11 @@
         function exportToImage() {
             const clientName = document.getElementById('clientName').value.trim();
             const fileName = clientName ? `${clientName}-royxat.png` : 'mahsulot-royxati.png';
-            
+
             const element = document.querySelector('.container');
             const buttons = document.querySelector('.button-group');
             const form = document.querySelector('.form-section');
-            
+
             buttons.style.display = 'none';
             form.style.display = 'none';
 
@@ -991,7 +1005,7 @@
                 logging: false,
                 backgroundColor: '#ffffff'
             }).then(canvas => {
-                canvas.toBlob(function(blob) {
+                canvas.toBlob(function (blob) {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
@@ -1000,7 +1014,7 @@
                     a.click();
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
-                    
+
                     buttons.style.display = 'flex';
                     form.style.display = 'block';
                 }, 'image/png');
@@ -1011,7 +1025,7 @@
             const element = document.querySelector('.container');
             const buttons = document.querySelector('.button-group');
             const form = document.querySelector('.form-section');
-            
+
             buttons.style.display = 'none';
             form.style.display = 'none';
 
@@ -1021,7 +1035,7 @@
                 logging: false,
                 backgroundColor: '#ffffff'
             }).then(canvas => {
-                canvas.toBlob(function(blob) {
+                canvas.toBlob(function (blob) {
                     if (navigator.share) {
                         const file = new File([blob], 'mahsulot-royxati.png', { type: 'image/png' });
                         navigator.share({
@@ -1036,7 +1050,7 @@
                     } else {
                         alert('Sizning brauzeringiz ulashishni qo\'llab-quvvatlamaydi');
                     }
-                    
+
                     buttons.style.display = 'flex';
                     form.style.display = 'block';
                 }, 'image/png');
@@ -1044,4 +1058,5 @@
         }
     </script>
 </body>
+
 </html>
