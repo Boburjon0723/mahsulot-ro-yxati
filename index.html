@@ -245,14 +245,22 @@
         .colors-cell {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 3px;
         }
 
         .color-item {
             width: 100%;
-            height: 20px;
+            min-height: 24px;
             border-radius: 3px;
             border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 4px;
+            color: #000;
+            text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff;
         }
 
         .quantities-cell {
@@ -349,7 +357,8 @@
             }
 
             .color-item {
-                height: 15px;
+                height: 18px;
+                font-size: 9px;
             }
 
             .quantity-item {
@@ -416,7 +425,7 @@
                 </div>
                 <div class="form-group">
                     <label>Narxi ( $ ):</label>
-                    <input type="number" id="modelPrice" placeholder="Masalan: 10$">
+                    <input type="number" id="modelPrice" placeholder="Masalan: 12$">
                 </div>
             </div>
 
@@ -424,34 +433,49 @@
                 <label>Ranglar:</label>
                 <div class="color-options">
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFD700')">
-                        <input type="checkbox" value="sariq">
-                        <div class="color-box" style="background: #FFD700;"></div>
+                        <input type="checkbox" value="tilla">
+                        <div class="color-box" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);"></div>
                         <span>Tilla</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#FFF8DC')">
+                        <input type="checkbox" value="qaymoq">
+                        <div class="color-box" style="background: #FFF8DC; border: 1px solid #ddd;"></div>
+                        <span>Qaymoq</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#808080')">
+                        <input type="checkbox" value="seriy">
+                        <div class="color-box" style="background: #808080;"></div>
+                        <span>Seriy</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#F5E6D3')">
+                        <input type="checkbox" value="shampan">
+                        <div class="color-box" style="background: #F5E6D3; border: 1px solid #ddd;"></div>
+                        <span>Shampan</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#FFFFFF')">
                         <input type="checkbox" value="oq">
-                        <div class="color-box" style="background: #FFFFFF;"></div>
+                        <div class="color-box" style="background: #FFFFFF; border: 1px solid #ddd;"></div>
                         <span>Oq</span>
                     </div>
-                    <div class="color-checkbox" onclick="toggleColor(this, '#C0C0C0')">
-                        <input type="checkbox" value="kumush">
-                        <div class="color-box" style="background: #C0C0C0;"></div>
-                        <span>Kumush</span>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#A9A9A9')">
+                        <input type="checkbox" value="mokriy">
+                        <div class="color-box" style="background: #A9A9A9;"></div>
+                        <span>Mokriy</span>
                     </div>
                     <div class="color-checkbox" onclick="toggleColor(this, '#000000')">
                         <input type="checkbox" value="qora">
                         <div class="color-box" style="background: #000000;"></div>
                         <span>Qora</span>
                     </div>
-                    <div class="color-checkbox" onclick="toggleColor(this, '#0000FF')">
-                        <input type="checkbox" value="ko'k">
-                        <div class="color-box" style="background: #0000FF;"></div>
-                        <span>Ko'k</span>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#8B7355')">
+                        <input type="checkbox" value="antik">
+                        <div class="color-box" style="background: linear-gradient(135deg, #8B7355 0%, #6B5A44 100%);"></div>
+                        <span>Antik</span>
                     </div>
-                    <div class="color-checkbox" onclick="toggleColor(this, '#FF0000')">
-                        <input type="checkbox" value="qizil">
-                        <div class="color-box" style="background: #FF0000;"></div>
-                        <span>Qizil</span>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#B87333')">
+                        <input type="checkbox" value="mis">
+                        <div class="color-box" style="background: linear-gradient(135deg, #B87333 0%, #8B5A2B 100%);"></div>
+                        <span>Mis</span>
                     </div>
                 </div>
             </div>
@@ -465,7 +489,7 @@
         </div>
 
         <div class="button-group">
-            <button class="btn-export" onclick="shareList()" style="background: #25D366;">📤 Ulashish (Telegram // Whatsaap)</button>
+            <button class="btn-export" onclick="shareList()" style="background: #25D366;">📤 Ulashish (Telegram/WhatsApp)</button>
             <button class="btn-export" onclick="exportToImage()">🖼️ Rasm saqlash</button>
             <button class="btn-export" onclick="exportToPDF()">📄 PDF</button>
             <button class="btn-print" onclick="window.print()">🖨️ Print</button>
@@ -491,7 +515,7 @@
                     <td colspan="4" class="text-right"><strong>JAMI:</strong></td>
                     <td class="text-center" id="totalQty"><strong>0</strong></td>
                     <td></td>
-                    <td class="text-right" id="totalPrice"><strong>0</strong>$</td>
+                    <td class="text-right" id="totalPrice"><strong>0</strong></td>
                     <td></td>
                 </tr>
             </tfoot>
@@ -586,7 +610,7 @@
             const totalSum = totalQty * price;
 
             const colorsHTML = quantities.map(item => 
-                `<div class="color-item" style="background: ${item.color.code};"></div>`
+                `<div class="color-item" style="background: ${item.color.code};">${item.color.name}</div>`
             ).join('');
 
             const quantitiesHTML = quantities.map(item => 
