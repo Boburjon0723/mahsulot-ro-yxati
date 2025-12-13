@@ -13,7 +13,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            padding: 10px;
             background: #f5f5f5;
         }
 
@@ -21,7 +21,7 @@
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -29,22 +29,139 @@
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .form-group {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 120px;
-            gap: 10px;
-            margin-bottom: 15px;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
         }
 
-        input {
-            padding: 10px;
+        label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
+        }
+
+        .image-upload {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .image-upload input[type="file"] {
+            flex: 1;
+        }
+
+        .image-preview {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .colors-section {
+            margin-bottom: 10px;
+        }
+
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .color-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .color-checkbox:hover {
+            border-color: #4CAF50;
+        }
+
+        .color-checkbox input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .color-checkbox.selected {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .quantities-section {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .quantities-section.active {
+            display: block;
+        }
+
+        .quantity-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .quantity-input .color-indicator {
+            width: 25px;
+            height: 25px;
+            border-radius: 3px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .quantity-input input {
+            flex: 1;
+            padding: 6px;
         }
 
         button {
@@ -54,105 +171,64 @@
             cursor: pointer;
             font-size: 14px;
             margin-right: 10px;
+            margin-top: 10px;
         }
 
         .btn-add {
             background: #4CAF50;
             color: white;
+            width: 100%;
         }
 
         .btn-add:hover {
             background: #45a049;
         }
 
-        .btn-print {
+        .btn-export {
             background: #2196F3;
             color: white;
         }
 
-        .btn-print:hover {
+        .btn-export:hover {
             background: #0b7dda;
+        }
+
+        .btn-print {
+            background: #FF9800;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background: #e68900;
         }
 
         .btn-delete {
             background: #f44336;
             color: white;
-            padding: 5px 10px;
-            font-size: 12px;
+            padding: 4px 8px;
+            font-size: 11px;
         }
 
         .btn-delete:hover {
             background: #da190b;
         }
 
-        .image-upload {
-            position: relative;
-        }
-
-        .image-upload input[type="file"] {
-            display: none;
-        }
-
-        .image-upload label {
-            display: block;
-            padding: 10px;
-            background: #9C27B0;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .image-upload label:hover {
-            background: #7B1FA2;
-        }
-
-        .product-image {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .product-image:hover {
-            transform: scale(1.1);
-        }
-
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 8px;
-        }
-
-        .image-modal.active {
+        .button-group {
             display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            font-size: 12px;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            border: 1px solid #333;
+            padding: 8px;
             text-align: left;
         }
 
@@ -166,10 +242,37 @@
             background: #f9f9f9;
         }
 
+        .colors-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .color-item {
+            width: 100%;
+            height: 20px;
+            border-radius: 3px;
+            border: 1px solid #333;
+        }
+
+        .quantities-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .quantity-item {
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
         .total-row {
             background: #e8f5e9 !important;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .total-row td {
@@ -184,103 +287,19 @@
             text-align: center;
         }
 
-        .button-group {
-            margin-bottom: 20px;
+        .table-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
         }
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
 
-    h1 {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-
-    .image-upload label {
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .button-group button {
-        width: 100%;
-        margin: 0;
-    }
-
-    table {
-        font-size: 12px;
-    }
-
-    th, td {
-        padding: 8px 4px;
-    }
-
-    .product-image {
-        width: 40px;
-        height: 40px;
-    }
-
-    /* Jadval scroll qilish uchun */
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Kichik ekranda ba'zi ustunlarni yashirish */
-    table th:nth-child(2),
-    table td:nth-child(2) {
-        display: none;
-    }
-
-    /* Ustun kengliklarini o'zgartirish */
-    th:nth-child(1), td:nth-child(1) { width: 10%; }
-    th:nth-child(3), td:nth-child(3) { width: 35%; }
-    th:nth-child(4), td:nth-child(4) { width: 15%; }
-    th:nth-child(5), td:nth-child(5) { width: 15%; }
-    th:nth-child(6), td:nth-child(6) { width: 15%; }
-    th:nth-child(7), td:nth-child(7) { width: 10%; }
-
-    .btn-delete {
-        padding: 4px 8px;
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 18px;
-    }
-
-    table {
-        font-size: 11px;
-    }
-
-    th, td {
-        padding: 6px 3px;
-    }
-
-    .product-image {
-        width: 35px;
-        height: 35px;
-    }
-
-    input {
-        padding: 12px;
-        font-size: 16px;
-    }
-}
         @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+
             body {
                 background: white;
                 padding: 0;
@@ -288,15 +307,22 @@
 
             .container {
                 box-shadow: none;
-                padding: 20px;
+                padding: 0;
+                max-width: 100%;
             }
 
-            .form-group, .button-group, .btn-delete {
+            .form-section, .button-group, .btn-delete {
                 display: none !important;
+            }
+
+            h1 {
+                font-size: 18px;
+                margin-bottom: 10px;
             }
 
             table {
                 page-break-inside: auto;
+                font-size: 10px;
             }
 
             tr {
@@ -304,7 +330,60 @@
                 page-break-after: auto;
             }
 
-            .product-image {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+
+            .table-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            .color-item {
+                height: 15px;
+            }
+
+            .quantity-item {
+                height: 15px;
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .color-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group button {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th, td {
+                padding: 4px;
+            }
+
+            .table-image {
                 width: 50px;
                 height: 50px;
             }
@@ -313,20 +392,74 @@
 </head>
 <body>
     <div class="container">
-        <h1>📋 Mahsulot Ro'yxati</h1>
+        <h1>📋 MAHSULOT RO'YXATI</h1>
 
-        <div class="form-group">
-            <input type="text" id="productName" placeholder="Mahsulot nomi">
-            <input type="number" id="productQty" placeholder="Juft">
-            <input type="number" id="productPrice" placeholder="Narxi">
+        <div class="form-section">
             <div class="image-upload">
-                <input type="file" id="productImage" accept="image/*">
-                <label for="productImage">📷 Rasm</label>
+                <label style="margin: 0;">📷 Rasm:</label>
+                <input type="file" id="imageUpload" accept="image/*">
+                <div class="image-preview" id="imagePreview">
+                    <span style="font-size: 10px; color: #999;">Rasm</span>
+                </div>
             </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Model nomi:</label>
+                    <input type="text" id="modelName" placeholder="Masalan: iPhone 15 Pro">
+                </div>
+                <div class="form-group">
+                    <label>Narxi (so'm):</label>
+                    <input type="number" id="modelPrice" placeholder="Masalan: 12000000">
+                </div>
+            </div>
+
+            <div class="colors-section">
+                <label>Ranglar:</label>
+                <div class="color-options">
+                    <div class="color-checkbox" onclick="toggleColor(this, '#FFD700')">
+                        <input type="checkbox" value="sariq">
+                        <div class="color-box" style="background: #FFD700;"></div>
+                        <span>Sariq</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#FFFFFF')">
+                        <input type="checkbox" value="oq">
+                        <div class="color-box" style="background: #FFFFFF;"></div>
+                        <span>Oq</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#C0C0C0')">
+                        <input type="checkbox" value="kumush">
+                        <div class="color-box" style="background: #C0C0C0;"></div>
+                        <span>Kumush</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#000000')">
+                        <input type="checkbox" value="qora">
+                        <div class="color-box" style="background: #000000;"></div>
+                        <span>Qora</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#0000FF')">
+                        <input type="checkbox" value="ko'k">
+                        <div class="color-box" style="background: #0000FF;"></div>
+                        <span>Ko'k</span>
+                    </div>
+                    <div class="color-checkbox" onclick="toggleColor(this, '#FF0000')">
+                        <input type="checkbox" value="qizil">
+                        <div class="color-box" style="background: #FF0000;"></div>
+                        <span>Qizil</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quantities-section" id="quantitiesSection">
+                <label>Har bir rang uchun soni:</label>
+                <div id="quantityInputs"></div>
+            </div>
+
+            <button class="btn-add" onclick="addProduct()">➕ Ro'yxatga qo'shish</button>
         </div>
 
         <div class="button-group">
-            <button class="btn-add" onclick="addProduct()">➕ Qo'shish</button>
+            <button class="btn-export" onclick="exportToPDF()">📄 PDF yuklab olish</button>
             <button class="btn-print" onclick="window.print()">🖨️ Print qilish</button>
         </div>
 
@@ -334,107 +467,156 @@
             <thead>
                 <tr>
                     <th style="width: 5%;">№</th>
-                    <th style="width: 10%;">Rasm</th>
-                    <th style="width: 35%;">Mahsulot nomi</th>
-                    <th style="width: 12%;" class="text-center">Juft</th>
-                    <th style="width: 13%;" class="text-right">Narxi</th>
-                    <th style="width: 13%;" class="text-right">Umumiy</th>
-                    <th style="width: 10%;" class="text-center">Amal</th>
+                    <th style="width: 15%;">Rasm</th>
+                    <th style="width: 25%;">Model</th>
+                    <th style="width: 12%;">Rang</th>
+                    <th style="width: 10%;">Soni</th>
+                    <th style="width: 13%;">Narxi</th>
+                    <th style="width: 15%;">Jami summa</th>
+                    <th style="width: 5%;">Amal</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23ddd' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='30'%3E💻%3C/text%3E%3C/svg%3E" class="product-image" onclick="showImage(this.src)"></td>
-                    <td>Notebook HP</td>
-                    <td class="text-center">2</td>
-                    <td class="text-right">5,000,000</td>
-                    <td class="text-right">10,000,000</td>
-                    <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23ddd' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='30'%3E🖥️%3C/text%3E%3C/svg%3E" class="product-image" onclick="showImage(this.src)"></td>
-                    <td>Monitor Samsung</td>
-                    <td class="text-center">3</td>
-                    <td class="text-right">2,500,000</td>
-                    <td class="text-right">7,500,000</td>
-                    <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
-                </tr>
             </tbody>
             <tfoot>
                 <tr class="total-row">
-                    <td colspan="3" class="text-right">JAMI:</td>
-                    <td class="text-center" id="totalQty">5</td>
+                    <td colspan="4" class="text-right"><strong>JAMI:</strong></td>
+                    <td class="text-center" id="totalQty"><strong>0</strong></td>
                     <td></td>
-                    <td class="text-right" id="totalPrice">17,500,000</td>
+                    <td class="text-right" id="totalPrice"><strong>0</strong></td>
                     <td></td>
                 </tr>
             </tfoot>
         </table>
-
-        <div id="imageModal" class="image-modal" onclick="closeModal()">
-            <img id="modalImage" src="" alt="Mahsulot rasmi">
-        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
+        let selectedColors = [];
+        let uploadedImage = '';
+
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    uploadedImage = event.target.result;
+                    document.getElementById('imagePreview').innerHTML = `<img src="${uploadedImage}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function toggleColor(element, colorCode) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            const colorName = checkbox.value;
+            
+            if (checkbox.checked) {
+                checkbox.checked = false;
+                element.classList.remove('selected');
+                selectedColors = selectedColors.filter(c => c.name !== colorName);
+            } else {
+                checkbox.checked = true;
+                element.classList.add('selected');
+                selectedColors.push({ name: colorName, code: colorCode });
+            }
+
+            updateQuantityInputs();
+        }
+
+        function updateQuantityInputs() {
+            const section = document.getElementById('quantitiesSection');
+            const container = document.getElementById('quantityInputs');
+            
+            if (selectedColors.length > 0) {
+                section.classList.add('active');
+                container.innerHTML = selectedColors.map(color => `
+                    <div class="quantity-input">
+                        <div class="color-indicator" style="background: ${color.code};"></div>
+                        <input type="number" id="qty_${color.name}" placeholder="${color.name} soni" min="1" value="1">
+                    </div>
+                `).join('');
+            } else {
+                section.classList.remove('active');
+                container.innerHTML = '';
+            }
+        }
+
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
         function addProduct() {
-            const name = document.getElementById('productName').value.trim();
-            const qty = parseInt(document.getElementById('productQty').value) || 0;
-            const price = parseInt(document.getElementById('productPrice').value) || 0;
-            const imageFile = document.getElementById('productImage').files[0];
+            const modelName = document.getElementById('modelName').value.trim();
+            const price = parseInt(document.getElementById('modelPrice').value) || 0;
 
-            if (!name || qty <= 0 || price <= 0) {
-                alert('Iltimos, barcha maydonlarni to\'ldiring!');
+            if (!modelName) {
+                alert('Model nomini kiriting!');
                 return;
             }
 
-            const tbody = document.getElementById('tableBody');
-            const rowCount = tbody.rows.length + 1;
-            const total = qty * price;
-
-            // Default image if no image uploaded
-            let imageSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23ddd' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='30'%3E📷%3C/text%3E%3C/svg%3E";
-
-            const row = tbody.insertRow();
-            
-            if (imageFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    row.innerHTML = `
-                        <td class="text-center">${rowCount}</td>
-                        <td class="text-center"><img src="${e.target.result}" class="product-image" onclick="showImage(this.src)"></td>
-                        <td>${name}</td>
-                        <td class="text-center">${qty}</td>
-                        <td class="text-right">${formatNumber(price)}</td>
-                        <td class="text-right">${formatNumber(total)}</td>
-                        <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
-                    `;
-                    updateTotals();
-                };
-                reader.readAsDataURL(imageFile);
-            } else {
-                row.innerHTML = `
-                    <td class="text-center">${rowCount}</td>
-                    <td class="text-center"><img src="${imageSrc}" class="product-image" onclick="showImage(this.src)"></td>
-                    <td>${name}</td>
-                    <td class="text-center">${qty}</td>
-                    <td class="text-right">${formatNumber(price)}</td>
-                    <td class="text-right">${formatNumber(total)}</td>
-                    <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
-                `;
-                updateTotals();
+            if (price <= 0) {
+                alert('Narxni kiriting!');
+                return;
             }
 
-            document.getElementById('productName').value = '';
-            document.getElementById('productQty').value = '';
-            document.getElementById('productPrice').value = '';
-            document.getElementById('productImage').value = '';
+            if (selectedColors.length === 0) {
+                alert('Kamida bitta rang tanlang!');
+                return;
+            }
+
+            const quantities = selectedColors.map(color => {
+                const qty = parseInt(document.getElementById(`qty_${color.name}`).value) || 1;
+                return { color: color, qty: qty };
+            });
+
+            const tbody = document.getElementById('tableBody');
+            const rowCount = tbody.rows.length + 1;
+            
+            const totalQty = quantities.reduce((sum, item) => sum + item.qty, 0);
+            const totalSum = totalQty * price;
+
+            const colorsHTML = quantities.map(item => 
+                `<div class="color-item" style="background: ${item.color.code};"></div>`
+            ).join('');
+
+            const quantitiesHTML = quantities.map(item => 
+                `<div class="quantity-item">${item.qty}</div>`
+            ).join('');
+
+            const imageURL = uploadedImage || 'https://via.placeholder.com/80?text=No+Image';
+
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td class="text-center">${rowCount}</td>
+                <td class="text-center"><img src="${imageURL}" alt="${modelName}" class="table-image"></td>
+                <td>${modelName}</td>
+                <td><div class="colors-cell">${colorsHTML}</div></td>
+                <td><div class="quantities-cell">${quantitiesHTML}</div></td>
+                <td class="text-right">${formatNumber(price)}</td>
+                <td class="text-right">${formatNumber(totalSum)}</td>
+                <td class="text-center"><button class="btn-delete" onclick="deleteRow(this)">❌</button></td>
+            `;
+
+            resetForm();
+            updateTotals();
+        }
+
+        function resetForm() {
+            document.getElementById('modelName').value = '';
+            document.getElementById('modelPrice').value = '';
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('imagePreview').innerHTML = '<span style="font-size: 10px; color: #999;">Rasm</span>';
+            uploadedImage = '';
+
+            document.querySelectorAll('.color-checkbox').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('input[type="checkbox"]').checked = false;
+            });
+
+            selectedColors = [];
+            updateQuantityInputs();
         }
 
         function deleteRow(btn) {
@@ -457,43 +639,59 @@
             let totalPrice = 0;
 
             for (let i = 0; i < tbody.rows.length; i++) {
-                const qty = parseInt(tbody.rows[i].cells[3].textContent) || 0;
-                const total = parseInt(tbody.rows[i].cells[5].textContent.replace(/,/g, '')) || 0;
-                totalQty += qty;
+                const quantitiesCell = tbody.rows[i].cells[4];
+                const quantities = quantitiesCell.querySelectorAll('.quantity-item');
+                quantities.forEach(q => {
+                    totalQty += parseInt(q.textContent) || 0;
+                });
+
+                const total = parseInt(tbody.rows[i].cells[6].textContent.replace(/,/g, '')) || 0;
                 totalPrice += total;
             }
 
-            document.getElementById('totalQty').textContent = totalQty;
-            document.getElementById('totalPrice').textContent = formatNumber(totalPrice);
+            document.getElementById('totalQty').innerHTML = `<strong>${totalQty}</strong>`;
+            document.getElementById('totalPrice').innerHTML = `<strong>${formatNumber(totalPrice)}</strong>`;
         }
 
-        function showImage(src) {
-            document.getElementById('modalImage').src = src;
-            document.getElementById('imageModal').classList.add('active');
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            
+            const element = document.querySelector('.container');
+            const buttons = document.querySelector('.button-group');
+            const form = document.querySelector('.form-section');
+            
+            buttons.style.display = 'none';
+            form.style.display = 'none';
+
+            html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 190;
+                const pageHeight = 277;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 10;
+
+                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight + 10;
+                    doc.addPage();
+                    doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                doc.save('mahsulot-royxati.pdf');
+                
+                buttons.style.display = 'flex';
+                form.style.display = 'block';
+            });
         }
-
-        function closeModal() {
-            document.getElementById('imageModal').classList.remove('active');
-        }
-
-        document.getElementById('productName').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('productQty').focus();
-            }
-        });
-
-        document.getElementById('productQty').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('productPrice').focus();
-            }
-        });
-
-        document.getElementById('productPrice').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addProduct();
-                document.getElementById('productName').focus();
-            }
-        });
     </script>
 </body>
 </html>
